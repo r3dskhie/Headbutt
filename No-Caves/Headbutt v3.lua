@@ -470,8 +470,8 @@ function onPathAction()
 				log("--- "..getPokemonName(digger).." is digging spot "..digcount.." in "..getMapName().." ---")
 					return talkToNpcOnCell(22,58)	--Dig 4
 				else
-					log("--- Avoiding Ladder! ---")
-					moveToCell(56,29)	--CELL TO AVOID LADDER
+					log("--- Digging on "..getMapName().." finished! Moving to next Spot ---")
+					moveToCell(58,33)	--MOVING to 1st area of DIG SPOT in B2F
 					x = x + 1
 				end
 			elseif x == 1 then
@@ -493,19 +493,14 @@ function onPathAction()
 					return talkToNpcOnCell(66,21)	--Dig 8
 				else
 					log("--- Digging on "..getMapName().." finished! Moving to next Spot ---")
-					moveToCell(58,33)	--MOVING to 1st area of DIG SPOT in B2F
+					moveToCell(37,29)	--MOVING to 1st area of DIG SPOT in B2F
 					x = x + 1
 				end
 			elseif x == 2 then
-				moveToCell(37,29)
-				x = x + 1
+				moveToCell(21,20)
+				x = x + 1	--CELL EXITS
 			elseif x == 3 then
-				moveToCell(21,20)		--CELL EXITS
-				x = x + 1
-			elseif x == 4 then
-				moveToMap("Mt. Moon Exit")
-
-
+				moveToMap("Mt. Moon Exit")		
 			end
 		elseif getMapName() == "Mt. Moon B1F" then
 			if y == 0 then
@@ -525,8 +520,6 @@ function onPathAction()
 				y = y + 1
 			elseif y == 5 then
 				moveToCell(41,20)
-				y = y + 1
-
 			end
 		elseif getMapName() == "Mt. Moon B2F" then
 
@@ -588,11 +581,8 @@ function onPathAction()
 
 			elseif z == 2 then
 				moveToCell(17,27)
-				z = z + 1
-
 			end
 		elseif getMapName() == "Mt. Moon Exit" then
-			x = 0
 			moveToMap("Route 4")
 		elseif getMapName() == "Route 4" then
 			if isNpcOnCell(74,15) then
