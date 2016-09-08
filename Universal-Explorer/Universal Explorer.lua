@@ -161,7 +161,7 @@ function onPathAction()
 		log("~~~ Riding on my pet!!! ~~~")
 		log("---------------------------")
 		return useItem(mount)
-  elseif isNpcVisible("PokeStop") then
+  elseif isNpcVisible("PokeStop") and getMapName() ~= "Cerulean City" then
 	log("--- Robbing Mr. Clown! ---")
 	talkToNpc("PokeStop")
   elseif getPokemonHealthPercent(falseswiper) <= 50 then
