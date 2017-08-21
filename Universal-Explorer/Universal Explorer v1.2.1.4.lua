@@ -33,6 +33,7 @@ function onStart()
 	r = 0
 	s = 0
     smash = 0
+	trapped = false
     	log("-----------------------------------------------------------")
 	log("--------- We are now Commencing the Routine ---------")
 	log("-----------------------------------------------------------")
@@ -93,6 +94,12 @@ function onBattleMessage(wild)
         wildcount = wildcount + 1
 		log("Info | Pokemon encountered: " .. wildcount)
 		
+	elseif stringContains(wild, "You can not run away!") then
+		trapped = true
+		log("Info | Trapped, attacking opponent")
+		
+	elseif stringContains(wild, "has fainted") then
+		trapped = false
 	end
 end
 function onDialogMessage(message)
@@ -140,7 +147,9 @@ function TableLength(T)
 end
 
 function onBattleAction()
-	if isWildBattle() and ((catchShiny and isOpponentShiny()) or (catchUncaught and not isAlreadyCaught()) or IsPokemonOnCaptureList()) then
+	if trapped then
+		return attack() or sendAnyPokemon()
+	elseif isWildBattle() and ((catchShiny and isOpponentShiny()) or (catchUncaught and not isAlreadyCaught()) or IsPokemonOnCaptureList()) then
 		if fswipeOn then
            	log("-------- Commencing False Swipe --------")
             		fswipe()
